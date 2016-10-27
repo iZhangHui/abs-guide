@@ -23,9 +23,8 @@ if [ "$EUID" -ne "$ROOT_UID" ]; then
   exit $E_NOTROOT
 fi
 
-if [ -n "$1" ]
+if [ -n "$1" ]; then
 # Test whether command-line argument is present (non-empty).
-then
   lines=$1
 else
   lines=$LINES # Default, if not specified on command-line.
@@ -49,9 +48,8 @@ fi
 
 cd $LOG_DIR
 
-if [ `pwd` != "$LOG_DIR" ]  # or   if [ "$PWD" != "$LOG_DIR" ]
-                            # Not in /var/log?
-then
+if [ `pwd` != "$LOG_DIR" ]; then # or   if [ "$PWD" != "$LOG_DIR" ]
+                                 # Not in /var/log?
   echo "Can't change to $LOG_DIR."
   exit $E_XCD
 fi  # Doublecheck if in right directory before messing with log file.
